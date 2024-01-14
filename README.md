@@ -1,10 +1,10 @@
-# OpenAI Chat Assistant Library (Unofficial)
+# OpenAI Chat Assistant Library (Unofficial) :robot:
 
 This is an unofficial library that I've put together to make it easier to interact with the Beta OpenAI Assistant API. While it's not officially supported by OpenAI, it's built following the official OpenAI documentation. I've found it useful and I hope you will too!
 
-**Please note that this library is a work in progress and is not at an official release version. It's currently in a testing phase, so there may be bugs and the API may change.**
+> :warning: **Please note that this library is a work in progress and is not at an official release version. It's currently in a testing phase, so there may be bugs and the API may change.**
 
-## Features
+## :star2: Features
 
 - Connects to the OpenAI API using your API key
 - Manages assistants and chat threads
@@ -12,7 +12,7 @@ This is an unofficial library that I've put together to make it easier to intera
 - Handles errors related to the API, chat, and assistant
 - Logs info about the chat process to the console and a file named `chat.log`
 
-## Usage
+## :rocket: Usage
 
 ```python
 # First, import the necessary modules:
@@ -39,17 +39,18 @@ chat_manager.send_message(assistant.id, "Hello, assistant!")
 messages = chat_manager.get_messages(assistant.id)
 ```
 
-## Important Note on Message Retrieval
+## :loudspeaker: Important Note on Message Retrieval
 
-**Please note that the OpenAI API doesn't currently support streaming, so you'll need to manually call `get_messages` periodically to check for new responses. This is known as polling. OpenAI plans to add support for streaming in the near future to simplify this process. Once streaming is supported by the OpenAI API, it will be incorporated into this library as well.**
-## Error Handling
+> :exclamation: **Please note that the OpenAI API doesn't currently support streaming, so you'll need to manually call `get_messages` periodically to check for new responses. This is known as polling. OpenAI plans to add support for streaming in the near future to simplify this process. Once streaming is supported by the OpenAI API, it will be incorporated into this library as well.**
+
+## :x: Error Handling
 
 The library includes custom exceptions for handling errors related to the chat run, chat messages, the OpenAI API, and the chat assistant. These exceptions are `ChatRunError`, `ChatMessageError`, `ChatAPIError`, and `ChatAssistantError`, respectively.
 
-## Logging
+## :memo: Logging
 
 The library includes a logger that logs information about the chat process, including any errors that occur. The log messages are written to the console and a log file named `chat.log`.
 
-## Disclaimer
+## :warning: Disclaimer
 
 Remember, this is an unofficial library and it's not supported by OpenAI. I've put it together to help make interacting with the OpenAI Assistant API easier. If you find any issues or have any improvements, feel free to contribute!

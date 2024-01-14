@@ -1,6 +1,5 @@
 import openai
 import logging
-from .config import get_api_key
 
 class ChatRunError(Exception):
     pass
@@ -24,7 +23,7 @@ class Chat:
             assistant (dict): A dictionary containing the assistant's name, description, model, tools, and instructions.
         """
 
-        self.api_key = get_api_key() 
+        self.api_key = 
         self.assistant = assistant
         self.thread = openai.beta.threads.create
 

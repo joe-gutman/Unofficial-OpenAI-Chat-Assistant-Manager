@@ -2,44 +2,46 @@
 
 This is an unofficial library that I've put together to make it easier to interact with the Beta OpenAI Assistant API. While it's not officially supported by OpenAI, it's built following the official OpenAI documentation. I've found it useful and I hope you will too!
 
+**Please note that this library is a work in progress and is not at an official release version. It's currently in a testing phase, so there may be bugs and the API may change.**
 
 ## Features
 
 - Connects to the OpenAI API using your API key
-- Lets you create chat threads and assistants
+- Manages assistants and chat threads
 - Sends and receives messages from the chat thread
 - Handles errors related to the API, chat, and assistant
 - Logs info about the chat process to the console and a file named `chat.log`
 
 ## Usage
 
-First, import the library:
-
 ```python
-from chat import Chat
+# First, import the necessary modules:
+from assistant_management import AssistantManager
+from chat_management import ChatManager
+
+# Then, create a new assistant manager and chat manager with your OpenAI API key:
+assistant_manager = AssistantManager(api_key="your-api-key")
+chat_manager = ChatManager(api_key="your-api-key")
+
+# You can create an assistant with the `create_assistant` method:
+assistant = assistant_manager.create_assistant(
+    name="Program Teacher",
+    description="A helpful programming assistant",
+    model="gpt-4-1106-preview",
+    tools=[{"type":"code_interpreter"}],
+    instructions="This assistant can answer questions about programming."
+)
+
+# And send a message with the `send_message` method:
+chat_manager.send_message(assistant.id, "Hello, assistant!")
+
+# And retrieve the response with the `get_messages` method:
+messages = chat_manager.get_messages(assistant.id)
 ```
 
-Then, create a new chat instance with your OpenAI API key and assistant details:
+## Important Note on Message Retrieval
 
-```python
-chat = Chat(api_key="your-api-key", assistant={"name": "assistant-name", "description": "assistant-description", "model": "assistant-model", "tools": "assistant-tools", "instructions": "assistant-instructions"})
-```
-
-You can send a message with the `send_message` method:
-
-```python
-chat.send_message("Hello, assistant!")
-```
-
-And retrieve the response with the `get_messages` method:
-
-```python
-messages = chat.get_messages()
-```
-
-Please note that the OpenAI API doesn't currently support streaming, so you'll need to manually call `get_messages` periodically to check for new responses. This is known as polling. OpenAI plans to add support for streaming in the near future to simplify this process. Once streaming is supported by the OpenAI API, it will be incorporated into this library as well.
-
-
+**Please note that the OpenAI API doesn't currently support streaming, so you'll need to manually call `get_messages` periodically to check for new responses. This is known as polling. OpenAI plans to add support for streaming in the near future to simplify this process. Once streaming is supported by the OpenAI API, it will be incorporated into this library as well.**
 ## Error Handling
 
 The library includes custom exceptions for handling errors related to the chat run, chat messages, the OpenAI API, and the chat assistant. These exceptions are `ChatRunError`, `ChatMessageError`, `ChatAPIError`, and `ChatAssistantError`, respectively.
@@ -48,7 +50,6 @@ The library includes custom exceptions for handling errors related to the chat r
 
 The library includes a logger that logs information about the chat process, including any errors that occur. The log messages are written to the console and a log file named `chat.log`.
 
-<br>
-
 ## Disclaimer
+
 Remember, this is an unofficial library and it's not supported by OpenAI. I've put it together to help make interacting with the OpenAI Assistant API easier. If you find any issues or have any improvements, feel free to contribute!

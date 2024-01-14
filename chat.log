@@ -1,0 +1,590 @@
+2024-01-14 13:18:50,070 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:18:50,313 - chat.assistant_management - INFO - Assistant retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:51:50,850 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:51:51,088 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:51:59,627 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:51:59,805 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:52:10,118 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:52:10,340 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:54:13,928 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+
+2024-01-14 13:54:14,137 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+
+2024-01-14 13:55:00,230 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development '
+          'Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None,
+  'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD',
+  'name': 'Ava'}]
+2024-01-14 13:55:00,409 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+ {'description': None,
+  'id': 'asst_ytZhRu9aWQGs6IWdERPAsFSB',
+  'name': 'Stable Diffusion Prompt Creator'},
+ {'description': None,
+  'id': 'asst_1hC2u2GRvbrY9rDh7UgBWXkr',
+  'name': 'Brown Box Studio Development '
+          'Assistant'},
+ {'description': None,
+  'id': 'asst_Xqv7MLxlwkpMBIChSvEXsRUS',
+  'name': 'Programming Helper'},
+ {'description': None,
+  'id': 'asst_55M0B1l151wvegGr3k7MaXVP',
+  'name': 'Estate Planning Attorney'},
+ {'description': None,
+  'id': 'asst_UzaLBfjD8X2gNppBl97x7Oyy',
+  'name': 'Ebay Listing Writing Bot'},
+ {'description': None,
+  'id': 'asst_HgjlkLh5SuOsYbWt7AWGK5FS',
+  'name': 'Custom Assistant Creator'},
+ {'description': None,
+  'id': 'asst_QuarcBthuX9q346SufkI4Jq1',
+  'name': 'Custom Assistant Function Creator'},
+ {'description': None,
+  'id': 'asst_lcsD0uLKFDDKog1WnyEAoz9e',
+  'name': 'Scheduler'},
+ {'description': None,
+  'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD',
+  'name': 'Ava'}]
+2024-01-14 13:56:32,413 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  ... {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:56:32,626 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  ... {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:57:00,756 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  ... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:57:00,975 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  ... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:58:28,045 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNO... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:58:28,253 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNO... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:58:54,130 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:58:54,361 - chat.assistant_management - INFO - Assistants retrieved successfully: [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:59:36,417 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:59:36,618 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'} 
+2024-01-14 13:59:52,133 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 13:59:52,304 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:02:28,085 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:02:28,312 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:03:26,501 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:03:26,742 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:04:44,887 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:04:45,105 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:05:52,479 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:05:52,692 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:06:43,955 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:06:44,198 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:07:56,268 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:07:56,500 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:09:06,255 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:09:06,479 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:09:49,093 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:09:49,366 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:10:00,939 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:10:01,165 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:10:10,529 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:10:10,704 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:10:34,246 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:10:34,477 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:10:44,676 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:10:44,889 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:11:29,912 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:11:30,076 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:11:47,900 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:11:48,137 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:12:21,476 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:12:21,705 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:14:10,865 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:14:11,084 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:14:36,138 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:14:36,340 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:15:43,971 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:15:44,323 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:22:22,905 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:22:44,508 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:23:17,485 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:23:17,733 - chat.assistant_management - INFO - Assistants retrieved successfully: 
+ [{'description': None,
+  'id': 'asst_v9mJ2fuWXgoNObkeSrboKPJK',
+  'name': 'Job Hunting Assistant'},
+... 
+ {'description': None, 'id': 'asst_8OsrZUzPPU7IMSulHEKKpIwD', 'name': 'Ava'}]
+2024-01-14 14:26:39,874 - chat.assistant_management - INFO - Assistants retrieved successfully.
+2024-01-14 14:26:40,134 - chat.assistant_management - INFO - Assistants retrieved successfully.
+2024-01-14 14:27:21,911 - chat.assistant_management - INFO - Assistants retrieved successfully.
+2024-01-14 14:27:22,077 - chat.assistant_management - INFO - Assistants retrieved successfully.
+2024-01-14 14:27:41,639 - chat.assistant_management - INFO - Assistants retrieved successfully.
+2024-01-14 14:27:41,814 - chat.assistant_management - INFO - Assistants retrieved successfully.

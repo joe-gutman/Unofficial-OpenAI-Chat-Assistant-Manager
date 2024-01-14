@@ -1,4 +1,5 @@
 import openai
+import pprint
 from .logging_setup import setup_logger
 from .exceptions import ChatAssistantError
 
@@ -12,9 +13,23 @@ class AssistantManager:
         else:
             openai.api_key = api_key
 
-        try:
-            openai.
+        try: 
+            self.assistants = self.get_assistants()
+            self.active_assistant = None
+        except Exception as e:
+            self.logger.error(f"Error initializing assistant manager: {e}")
+            raise ChatAssistantError(f"Error initializing assistant manager. Please check your OpenAI configuration.")
 
+    def set_active_assistant(self, assistant):
+        """
+        Sets the active assistant.
+
+        Args:
+            assistant (dict): The assistant to set as active.
+            set_active (bool): Whether to set the assistant as active or not.
+        """
+        self.logger.info(f"Setting assistant {assistant} as active")
+        self.active_assistant = assistant
 
     def create_assistant(self, assistant):
         """
@@ -59,28 +74,38 @@ class AssistantManager:
             raise ChatAssistantError(f"Error creating assistant. Please ensure the assistant information is correct.")
 
 
-    def get_assistant(self, identifier):
-    """
-    Retrieves an assistant by ID or name.
+    def get_assistant(self, identifier, set_active=False):
+        """
+        Retrieves an assistant by ID or name.
 
-    Args:
-        identifier (str): The ID or name of the assistant to retrieve.
-    """
-    try:
-        assistants = openai.beta.assistants.list()
-    except Exception as e:
-        self.logger.error(f"Error listing assistants: {e}")
-        raise ChatAssistantError(f"Error listing assistants. Please check your OpenAI configuration.")
+        Args:
+            identifier (str): The ID or name of the assistant to retrieve.
+        """
+        try:
+            assistant = openai.beta.assistants.list(
+                assistant_id=identifier
+            )
+            self.logger.info(f"Assistant retrieved successfully: {assistant}")
+            if set_active:
+                self.set_active_assistant(assistant)
+            return assistant
+        except Exception as e:
+            self.logger.error(f"Error getting assistant: {e}")
+            raise ChatAssistantError(f"Error getting assistant. Please ensure the identifier is correct.")
 
-    try:
-        for assistant in assistants:
-            if assistant.id == identifier or assistant.name == identifier:
-                self.logger.info(f"Assistant {identifier} retrieved successfully")
-                return assistant
-        raise ChatAssistantError(f"No assistant found with identifier {identifier}")
-    except Exception as e:
-        self.logger.error(f"Error retrieving assistant: {e}")
-        raise ChatAssistantError(f"Error retrieving assistant. Please ensure the identifier is correct.")
+    def get_assistants(self):
+        """
+        Retrieves all assistants.
+        """
+        try:
+            response = openai.beta.assistants.list()
+            self.assistants = response.data
+                            
+            self.logger.info("Assistants retrieved successfully.")
+            return self.assistants
+        except Exception as e:
+            self.logger.error(f"Error getting assistants: {e}")
+            raise ChatAssistantError(f"Error getting assistants. Please check your OpenAI configuration.")
 
     def update_assistant(self, assistant):
         """
@@ -105,7 +130,9 @@ class AssistantManager:
 
             # update returns modified assistant object. So check if the assistant is returned.
             if updated:
-                self.logger.info(f"Updated assiststant: {updated}")
+                self.logger.info(f"Updated assistant: {updated}")
+                # update assistant in self.assistants
+                self.assistants = self.get_assistants()
                 return updated
         except Exception as e:
             self.logger.error(f"Error updating assistant: {e}")

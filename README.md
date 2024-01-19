@@ -56,6 +56,10 @@ The library includes custom exceptions for handling errors related to the chat r
 
 The library includes a logger that logs information about the chat process, including any errors that occur. The log messages are written to the console and a log file named `chat.log`.
 
+## Documentation
+
+For more information on how to use this project, see the [documentation](docs/).
+
 ## Disclaimer
 
 Remember, this is an unofficial library and it's not supported by OpenAI. I've put it together to help make interacting with the OpenAI Assistant API easier. If you find any issues or have any improvements, feel free to contribute!

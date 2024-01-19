@@ -1,18 +1,23 @@
 # OpenAI Chat Assistant Library (Unofficial) :robot:
 
+> :warning: **IMPORTANT:** This library is **currently under development** and is **NOT ready for use in production**. More detailed information will be added prior to the stable release.
+
 This is an unofficial library that I've put together to make it easier to interact with the Beta OpenAI Assistant API. While it's not officially supported by OpenAI, it's built following the official OpenAI documentation. I've found it useful and I hope you will too!
 
-> :warning: **Please note that this library is a work in progress and is not at an official release version. It's currently in a testing phase, so there may be bugs and the API may change.**
+
 
 ## Features
 
 - Connects to the OpenAI API using your API key
 - Manages assistants and chat threads
-- Sends and receives messages from the chat thread
+- Sends and receives messages for assistant chat threads
 - Handles errors related to the API, chat, and assistant
 - Logs info about the chat process to the console and a file named `chat.log`
 
 ## Usage
+
+> :warning: **IMPORTANT:** The usage instructions below are **subject to change** as this library is currently under development. They may not be accurate.
+
 
 ```python
 # First, import the necessary modules:

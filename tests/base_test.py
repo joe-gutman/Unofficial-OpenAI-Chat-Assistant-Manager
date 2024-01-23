@@ -1,23 +1,29 @@
 import os
 import unittest
 from pyaimanager import AssistantManager
-from pyaimanager.exceptions import ChatAssistantError
+from pyaimanager.utils.exceptions import ChatAssistantError
 from dotenv import load_dotenv
 
-class BaseTest(unittest.TestCase):
+class BaseTest(unittest.IsolatedAsyncioTestCase):
     @classmethod
     def setUpClass(cls):
         load_dotenv(override=True)
         print('Setting up test...')
 
-    def setUp(self):
+    async def setUp(self):
         api_key = os.getenv('OPENAI_API_KEY')
         if api_key is None:
             self.fail("OPENAI_API_KEY environment variable not set")
-        self.manager = AssistantManager(api_key)
+        self.manager = await AssistantManager.create(api_key)
+        self.test_assistant = {
+            "name": "Test Assistant",
+            "description": "Test assistant for testing pyaimanager",
+            "model": "gpt-3.5-turbo",
+            "instructions": "You are a basic test assistant. You exist to test pyaimanager, a Python wrapper for the OpenAI Assistant API.",
+        }
 
-    def tearDown(self):
+    async def tearDown(self):
         # Delete the assistant if it exists
-        assistant = self.manager.get_assistant_by_name("Test Assistant")
+        assistant = await self.manager.get_assistant_by_name("Test Assistant")
         if assistant is not None:
-            self.manager.delete_assistant(assistant.id)
+            await self.manager.delete_assistant(assistant.id)

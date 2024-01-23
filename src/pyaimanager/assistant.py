@@ -1,6 +1,7 @@
-import openai
-from .logging_setup import setup_logger
-from .exceptions import ChatAssistantError
+import asyncio
+from .utils.logging import logger
+from .utils.exceptions import ChatAssistantError, ChatMessageError, ChatConversationError, ChatRunError
+from .conversation import Conversation
 
 class Assistant:
     """
@@ -67,81 +68,108 @@ class Assistant:
         See OpenAI's documentation at https://platform.openai.com/docs/introduction for more information.
     """
 
-    def __init__(self, assistant_data):
-        self.id = assistant_data.id
-        self.name = assistant_data.name
-        self.object = assistant_data.object
-        self.created_at = assistant_data.created_at
-        self.description = assistant_data.description
-        self.model = assistant_data.model
-        self.instructions = assistant_data.instructions
-        self.tools = assistant_data.tools
-        self.file_ids = assistant_data.file_ids
-        self.metadata = assistant_data.metadata
+    def __init__(self, assistant, http_request_handler):
+        self.__http = http_request_handler
+        self.__update_interval = 5
+
+        self.id = assistant['id']
+        self.name = assistant['name']
+        self.object = assistant['object']
+        self.created_at = assistant['created_at']
+        self.description = assistant['description']
+        self.model = assistant['model']
+        self.instructions = assistant['instructions']
+        self.tools = assistant['tools']
+        self.file_ids = assistant['file_ids']
+        self.metadata = assistant['metadata']
         self.conversations = []
         self.active_conversation = None
 
-    def update(self, new_data):
+    def update(self, new_parameters):
         """
         Updates the Assistant's attributes with new data.
 
         Args:
-            new_data (dict or object): A dictionary or object of new data.
+            new_parameters (dict): A dictionary of parameters to update the Assistant with.
         """
-        if not isinstance(new_data, dict):
-            new_data = new_data.name
-
-        for key, value in new_data.items():
+        for key, value in new_parameters.items():
             if hasattr(self, key):
                 setattr(self, key, value)
+        logger.info(f"Updated Assistant; id: {self.id}, name: {self.name}")
         
         return self
 
-    def _check_run(self, run_id):
-        self.logger.info(f"Checking run status for run ID: {run_id}")
-        try:
-            run = openai.beta.threads.runretrieve(run_id)
-            if run['status'] == 'completed':
-                self.logger.info(f"Run status is completed for run ID: {run_id}")
-                return True
-            else:
-                self.logger.info(f"Run status is not completed for run ID: {run_id}")
-                return False
-        except Exception as e:
-            self.logger.error(f"Error checking run status: {e}")
-            raise ChatRunError(f"Error checking run status {e}. Please try again.")
+    async def _get_message_response(self, conversation):
+        """
+        Waits for a run to complete and then returns the response.
 
-    def _create_new_thread(self, title, description = None):
+        Args:
+            conversation (object): The conversation to get the run status from.
+
+        Returns:
+            dict: The response from the completed run.
+        """
+        logger.info(f"Waiting for run completion for run ID: {conversation.get_run_id()}")
+        while True:
+            try:
+                run_id = conversation.get_run_id()
+                thread_id = conversation.get_thread_id()
+                run = await self.__http.request(
+                    "get", 
+                    f"threads/{thread_id}/runs/{run_id}")
+                if run['status'] == 'completed':
+                    logger.info(f"Run completed for run ID: {run['id']}")
+                    # return thread
+                    thread = await self.__http.request("get", f"threads/{thread_id}")
+                    conversation.set_thread(thread)
+                    conversation.set_run(run)
+                    messages = await self.__http.request("get", f"threads/{thread_id}/messages")
+                    conversation.set_messages(messages['data'])
+                    conversation.set_latest_response(conversation.get_messages()[-1])
+
+                    logger.info(f"Messages: {conversation.get_messages()}")
+                    logger.info(f"Response: {conversation.latest_response}")
+
+                    return conversation.latest_response
+                else:
+                    logger.info(f"Run not completed yet for run ID: {run['id']}")
+                    await asyncio.sleep(self.__update_interval)
+            except Exception as e:
+                logger.error(f"Error waiting for run completion: {e}")
+                raise ChatRunError(f"Error waiting for run completion: {e}. Please try again.")
+
+    async def _create_new_thread(self, message):
         """
         Creates a new thread for the assistant.
+
+        Args:
+            message (str): The message to send to the assistant.
 
         Returns:
             The new thread.
         """
-
-        self.logger.info(f"Creating new thread with title: {title} and description: {description}")
         try:
-            new_thread = openai.beta.threads.create()
-            self.logger.info(f"New thread created with ID: {new_thread.id}")
+            new_thread = await self.__http.request("post", "threads", { "messages":[{ "role": "user", "content": message }] })
+            logger.info(f"New thread created with ID: {new_thread['id']}")
             return new_thread
         except Exception as e:
-            self.logger.error(f"Error creating new thread: {e}")
-            raise ChatRunError(f"Error creating new thread: {e}. Please check your setup and try again.")
+            logger.error(f"Error creating new thread: {e}, for message: {message}")
+            raise ChatRunError(f"Error creating new thread: {e}, for message: {message}. Please check your setup and try again.")
 
-    def _create_new_run(self, thread_id):
+    async def _create_new_run(self, thread_id):
         try:
-            run = openai.beta.threads.runcreate(
-                thread_id=thread_id,
-                assistant_id=self.info.id,
-                instructions=self.info.instructions,
+            run = await self.__http.request(
+                "post", 
+                f"threads/{thread_id}/runs", 
+                {"assistant_id": self.id}
             )
-            self.logger.info(f"New run created with thread ID: {thread_id}")
+            logger.info(f"New run created with thread ID: {thread_id}")
             return run
         except Exception as e:
-            self.logger.error(f"Error creating new run: {e}")
+            logger.error(f"Error creating new run: {e}")
             raise ChatRunError(f"Error creating new run: {e}")
 
-    def start_new_conversation(self, title, description = None):
+    async def create_conversation(self, title, description = None):
         """
         Starts a new conversation with the assistant.
 
@@ -150,45 +178,71 @@ class Assistant:
             (Optional) description (str): The description of the conversation. Default is None. 
         """
         try:
-            new_thread = self._create_new_thread()
-            new_run = self._create_new_run(new_thread.id)
-            new_conversation = {
+            new_conversation = Conversation({
                 "title": title,
                 "description": description,
-                "created_at": new_run.created_at,
-                "thread": new_thread,
-                "run": new_run
-            }
+            })
             self.conversations.append(new_conversation)
             self.active_conversation = new_conversation
+            return new_conversation
         except ChatRunError as e:
-            self.logger.error(f"Error starting chat: {e}")
+            logger.error(f"Error starting chat: {e}")
             raise ChatAssistantError(f"Error starting chat: {e}. Please check your setup and try again.")
-    
-    def send_message(self, message, conversation = None):
+        
+    def set_active_conversation(self, conversation):
+        self.active_conversation = conversation
+
+    async def send_message(self, message, conversation = None):
         """
-        Sends a message to the assistant.
+        Sends a message to the assistant and periodically retrieves the Run object to update the status.
 
         Args:
             message (str): The message to send to the assistant.
             (Optional) conversation (object): The conversation to send the message to. Default is active conversation.
+            update_interval (int): The interval in seconds between each update.
         """
-        if conversation is None:
+        # check if any conversation was given or is active to send message
+        if self.active_conversation is None and conversation is None:
+            logger.error("No given conversation or active conversation to send message to.")
+            raise ChatMessageError("No conversations to send message to. Please set an active conversation or start a new conversation.")
+        elif conversation is None and self.active_conversation is not None:
             conversation = self.active_conversation
+        elif conversation is not None and self.active_conversation is None:
+            self.active_conversation = conversation
 
-        self.logger.info(f"Attempting to send message: {message}")
         try:
-            self.message = openai.beta.threads.message.create(
-                thread_id=conversation["run"].id,
-                role="user",
-                content=message
-            )
-            conversation["thread"].append({"role": "user", "content": message})
+            logger.info(f"Active conversation: {self.active_conversation.__dict__}")
+            if self.active_conversation.get_message_count() == 0:
+                # create new thread with initial message
+                self.active_conversation.set_thread(await self._create_new_thread(message))
+            else:
+                # Create the new message
+                logger.info(f"Sending message: {message}")
+                await self.__http.request("post", f"threads/{self.active_conversation.get_thread_id()}/messages", {
+                    "role": "user",
+                    "content": message
+                })
+
+                # Update the thread
+                thread = await self.__http.request("get", f"threads/{self.active_conversation.get_thread_id()}")
+                self.active_conversation.set_thread(thread)
+                logger.info(f"Thread updated: {self.active_conversation.get_thread()}")
+
+            # Create a new run
+            conversation.set_run(await self._create_new_run(self.active_conversation.get_thread_id()))
+
+
+            logger.info(f"Message sent successfully: {message}")
+            response = await self._get_message_response(conversation)        
+            self.active_conversation.set_thread(await self.__http.request("get", f"threads/{self.active_conversation.get_thread_id()}"))
+
+            return response
+
         except Exception as e:
-            self.logger.error(f"Error sending message: {e}")
+            logger.error(f"Error sending message: {e}")
             raise ChatMessageError(f"Error sending message: {e}. Please try again.")
 
-    def get_messages(self, conversation = None):
+    async def get_messages(self, conversation = None):
         """
         Gets messages from a conversation.
 
@@ -197,18 +251,45 @@ class Assistant:
         """
         if conversation is None:
             if self.active_conversation is None:
-                self.logger.error("No given conversation or active conversation to get messages from.")
+                logger.error("No given conversation or active conversation to get messages from.")
                 raise ChatMessageError("No conversations to get messages from. Please set an active conversation or start a new conversation.")
             conversation = self.active_conversation
 
-        self.logger.info(f"Attempting to get messages from conversation: {conversation}")
+        logger.info(f"Attempting to get messages from conversation: {conversation}")
         try:
-            messages = openai.beta.threads.message.list(
-                thread_id=conversation["run"].id
-            )
+            messages = await self.__http.request("get", f"threads/{conversation.thread.id}/messages")
             conversation["thread"].extend(messages.data)
-            self.logger.info(f"Messages retrieved successfully from conversation: {conversation}")
+            logger.info(f"Messages retrieved successfully from conversation: {conversation}")
             return messages
         except Exception as e:
-            self.logger.error(f"Error getting messages: {e}")
+            logger.error(f"Error getting messages: {e}")
             raise ChatMessageError(f"Error getting messages: {e}. Please try again.")
+        
+    async def delete_conversation(self, conversation_id):
+        """
+        Deletes a conversation.
+
+        Args:
+            conversation_id (str): The ID of the conversation to delete.
+        """
+        try:
+            if self.active_conversation.id == conversation_id:
+                conversation = self.active_conversation
+                self.active_conversation = None
+            else:
+                for conversation in self.conversations:
+                    if conversation.id == conversation_id:
+                        conversation = conversation
+            logger.info(f"Found conversation: {conversation.__dict__} to delete.")
+            logger.info(f"Thread to Delete: {conversation.get_thread_id()}")
+            deleted = await self.__http.request("delete", f"threads/{conversation.get_thread()['id']}")
+            if deleted['deleted'] == True:
+                self.conversations.remove(conversation)
+                logger.info(f"Conversation with ID {conversation_id} deleted successfully.")
+            return {
+                "deleted": deleted['deleted'],
+                "conversation": conversation.id
+            }
+        except Exception as e:
+            logger.error(f"Error deleting conversation: {e}")
+            raise ChatConversationError(f"Error deleting conversation: {e}. Please try again.")

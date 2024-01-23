@@ -1,46 +1,30 @@
-import unittest
-import pyaimanager
+import asyncio
 from base_test import BaseTest
-
-'''
-Tests the assistant lifecycle which involves:
-    creating
-    setting as active
-    deleting
-'''
+from pyaimanager.utils.exceptions import ChatAssistantError
 
 class TestAssistantLifecycle(BaseTest):
-    def test_create_set_delete_assistant(self):
+    def setUp(self):
+        self.loop = asyncio.get_event_loop()
+        self.loop.run_until_complete(super().setUp())
+
+    async def test_assistant_lifecycle(self):
         # Create assistant
-        assistant_params = {
-            "name": "Test Assistant",
-            "description": "This is a test assistant",
-            "model": "gpt-3.5-turbo",
-            "instructions": "You are a basic test assistant, here to test the assistant lifecycle. Which is to create, set as active, and delete.",
-        }
+        new_assistant = await self.manager.create_assistant(self.test_assistant)
+        self.assertEqual(new_assistant.name, self.test_assistant['name'])
 
-        # Create assistant
-        assistant=self.manager.create_assistant(assistant_params)
-        all_assistants = self.manager.get_assistants()
-        for asst in all_assistants:
-            print(asst.name)
+        # Update assistant
+        updated_info = {'name': 'Updated Assistant'}
+        updated_assistant = await self.manager.update_assistant(new_assistant, updated_info)
+        self.assertEqual(updated_assistant.name, updated_info['name'])
 
-        # Check if assistant exists by name and id
-        self.assertIsNotNone(self.manager.get_assistant_by_name(assistant.name))
-        self.assertIsNotNone(self.manager.get_assistant_by_id(assistant.id))
-
-        # Set assistant as the active assistant
-        active_assistant = self.manager.set_active_assistant(assistant)
-        self.assertEqual(assistant.id, active_assistant.id)
-
-        # Delete the active assistant
-        deleted_assistant = self.manager.delete_assistant(assistant.id)
-
-        # Try to get the assistant by name and id, should return None
-        self.assertEqual(self.manager.get_assistant_by_id(assistant.id), None)
-        self.assertEqual(self.manager.get_assistant_by_name(assistant.name), None)
-
-
-        # Check if the active_assistant has been removed or is still the active assistant
-        active_assistant = self.manager.get_active_assistant()
-        self.assertEqual(active_assistant, None)
+        # Delete updated assistant
+        deleted_assistant = await self.manager.delete_assistant(updated_assistant.id)
+        if deleted_assistant is None:
+            self.fail("Assistant was not deleted.")
+        else: 
+            self.assertEqual(deleted_assistant['id'], updated_assistant.id)
+        
+        # Check if assistant is removed from the list
+        local_assistant = await self.manager.get_assistant_by_id(deleted_assistant['id'])
+        if local_assistant is not None:
+            self.fail("Assistant was not removed from the list.")

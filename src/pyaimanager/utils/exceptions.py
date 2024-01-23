@@ -9,3 +9,6 @@ class ChatAPIError(Exception):
 
 class ChatAssistantError(Exception):
     pass
+
+class ChatConversationError(Exception):
+    pass

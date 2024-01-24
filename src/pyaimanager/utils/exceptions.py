@@ -1,3 +1,6 @@
+class AssistantManagerError(Exception):
+    pass
+
 class ChatRunError(Exception):
     pass
 

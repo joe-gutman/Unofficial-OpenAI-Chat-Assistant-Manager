@@ -1,4 +1,5 @@
 import asyncio
+import json
 from .utils.logging import logger
 from .utils.exceptions import ChatAssistantError, ChatMessageError, ChatConversationError, ChatRunError
 from .conversation import Conversation
@@ -79,11 +80,12 @@ class Assistant:
         self.description = assistant['description']
         self.model = assistant['model']
         self.instructions = assistant['instructions']
-        self.tools = assistant['tools']
-        self.file_ids = assistant['file_ids']
-        self.metadata = assistant['metadata']
-        self.conversations = []
-        self.active_conversation = None
+        self.tools = assistant.get('tools', None)
+        self.file_ids = assistant.get('file_ids', None)
+        self.metadata = assistant.get('metadata', None)
+        self.functions = assistant.get('functions', None)
+        self.conversations = assistant.get('conversations', [])
+        self.active_conversation = assistant.get('active_conversation', None)
 
     def update(self, new_parameters):
         """
@@ -92,12 +94,20 @@ class Assistant:
         Args:
             new_parameters (dict): A dictionary of parameters to update the Assistant with.
         """
+        # Update the Assistant's attributes with the new parameters
         for key, value in new_parameters.items():
             if hasattr(self, key):
                 setattr(self, key, value)
         logger.info(f"Updated Assistant; id: {self.id}, name: {self.name}")
         
         return self
+    
+    def use_function(self, function_name, *args, **kwargs):
+        if function_name in self.functions:
+            return self.functions[function_name](*args, **kwargs)
+        else:
+            raise Exception(f"Function {function_name} not found")
+
 
     async def _get_message_response(self, conversation):
         """
@@ -112,31 +122,58 @@ class Assistant:
         logger.info(f"Waiting for run completion for run ID: {conversation.get_run_id()}")
         while True:
             try:
-                run_id = conversation.get_run_id()
-                thread_id = conversation.get_thread_id()
-                run = await self.__http.request(
-                    "get", 
-                    f"threads/{thread_id}/runs/{run_id}")
-                if run['status'] == 'completed':
-                    logger.info(f"Run completed for run ID: {run['id']}")
-                    # return thread
-                    thread = await self.__http.request("get", f"threads/{thread_id}")
-                    conversation.set_thread(thread)
-                    conversation.set_run(run)
-                    messages = await self.__http.request("get", f"threads/{thread_id}/messages")
-                    conversation.set_messages(messages['data'])
-                    conversation.set_latest_response(conversation.get_messages()[-1])
+                run = await self._get_run_status(conversation)
+                
+                if run['status'] == 'requires_action':
+                    await self._handle_required_action(run, conversation)
 
-                    logger.info(f"Messages: {conversation.get_messages()}")
-                    logger.info(f"Response: {conversation.latest_response}")
+                elif run['status'] == 'completed':
+                    return await self._handle_completed_run(run, conversation)
 
-                    return conversation.latest_response
                 else:
                     logger.info(f"Run not completed yet for run ID: {run['id']}")
                     await asyncio.sleep(self.__update_interval)
             except Exception as e:
                 logger.error(f"Error waiting for run completion: {e}")
                 raise ChatRunError(f"Error waiting for run completion: {e}. Please try again.")
+
+    async def _get_run_status(self, conversation):
+        run_id = conversation.get_run_id()
+        thread_id = conversation.get_thread_id()
+        return await self.__http.request("get", f"threads/{thread_id}/runs/{run_id}")
+
+    async def _handle_required_action(self, run, conversation):
+        tool_outputs = []
+        for tool_call in run['required_action']['submit_tool_outputs']['tool_calls']:
+            function_name = tool_call['function']['name']
+            function_args = json.loads(tool_call['function']['arguments'])
+            function_output = self.use_function(function_name, **function_args)
+            tool_outputs.append({
+                "tool_call_id": tool_call['id'],
+                "output": function_output,
+            })
+
+        run_id = conversation.get_run_id()
+        thread_id = conversation.get_thread_id()
+        await self.__http.request(
+            "post", 
+            f"threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
+            json={"tool_outputs": tool_outputs})
+
+    async def _handle_completed_run(self, run, conversation):
+        logger.info(f"Run completed for run ID: {run['id']}")
+        thread_id = conversation.get_thread_id()
+        thread = await self.__http.request("get", f"threads/{thread_id}")
+        conversation.set_thread(thread)
+        conversation.set_run(run)
+        messages = await self.__http.request("get", f"threads/{thread_id}/messages")
+        conversation.set_messages(messages['data'])
+        conversation.set_latest_response(conversation.get_messages()[0])
+
+        logger.info(f"Messages: {conversation.get_messages()}")
+        logger.info(f"Response: {conversation.latest_response}")
+
+        return conversation.latest_response
 
     async def _create_new_thread(self, message):
         """
@@ -192,23 +229,28 @@ class Assistant:
     def set_active_conversation(self, conversation):
         self.active_conversation = conversation
 
-    async def send_message(self, message, conversation = None):
+    async def send_message(self, message, conversation=None):
         """
         Sends a message to the assistant and periodically retrieves the Run object to update the status.
 
         Args:
             message (str): The message to send to the assistant.
             (Optional) conversation (object): The conversation to send the message to. Default is active conversation.
-            update_interval (int): The interval in seconds between each update.
         """
-        # check if any conversation was given or is active to send message
-        if self.active_conversation is None and conversation is None:
-            logger.error("No given conversation or active conversation to send message to.")
-            raise ChatMessageError("No conversations to send message to. Please set an active conversation or start a new conversation.")
+        # If no conversation is provided and there's no active conversation, create a new one
+        if conversation is None and self.active_conversation is None:
+            conversation = await self.create_conversation("New Conversation")
+            self.set_active_conversation(conversation)
+
+        # If a conversation is provided but there's no active conversation, set the provided one as active
+        elif conversation is not None and self.active_conversation is None:
+            self.set_active_conversation(conversation)
+
+        # If no conversation is provided but there's an active one, use the active one
         elif conversation is None and self.active_conversation is not None:
             conversation = self.active_conversation
-        elif conversation is not None and self.active_conversation is None:
-            self.active_conversation = conversation
+
+        # The rest of your code...
 
         try:
             logger.info(f"Active conversation: {self.active_conversation.__dict__}")

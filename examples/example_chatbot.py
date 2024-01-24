@@ -1,15 +1,19 @@
-from pyaimanager import AssistantManager
-from dotenv import load_dotenv
+# Import necessary modules
 import asyncio
 import os
-import sys
-
+# import .env file
+from dotenv import load_dotenv
 load_dotenv()
 
-def quit():
-    print("Chatbot: Goodbye!")
-    sys.exit()
+# import the AssistantManager class
+from pyaimanager import AssistantManager
 
+# import tools
+# from example_tools import tools, functions
+from example_tools import tools, functions
+
+
+# Create a new chatbot class
 class Chatbot:
     """
     A simple chatbot that can talk to you, and answer your questions.
@@ -21,9 +25,11 @@ class Chatbot:
     def __init__(self, assistant_params):
         # Create a new assistant manager
         self.assistant_params = assistant_params
+        # Initialize the assistant variable
         self.assistant = None
 
-
+    # Due to the async nature of the chatbot, we need to initialize the assistant in an async function.
+    # When you create the AssistantManager don't forget to pass in your OpenAI API key.
     async def initialize(self):
         self.assistant = await AssistantManager(os.getenv("OPENAI_API_KEY")).create_assistant(self.assistant_params)
 
@@ -38,33 +44,19 @@ class Chatbot:
             response = await self.assistant.send_message(message)
             print("\n" + self.assistant.name.upper() + ":", response['content'][0]['text']['value'], "\n")
 
-    # So that we do not have to worry about the async nature of the chatbot, we can use this function to initialize the chatbot and start chatting with it.
+    # The main function that starts the chatbot, handling the async event loop.
     def start_chat(self):
+        # Create a new event loop
         loop = asyncio.get_event_loop()
+        # Call the async initialize function
         loop.run_until_complete(self.initialize())
-        # Due to the async nature of the chatbot, we need to run it in a separate event loop. Response times may vary depending on the response speed of the OpenAI API.
+        # Due to the async nature of the chatbot, we need to run it in a separate event loop. 
+        # Response times may vary depending on the response speed of the OpenAI API.
         loop.run_until_complete(self.chat())
         loop.close()
 
-# We can add custom tools to the chatbot to make it more useful. These tools can be used in the chatbot's instructions and then calls the quit() function.
-tools = [{
-    "type": "function",
-    "function": {
-        "name": "quit",
-        "description": "End the chat",
-        "parameters": {
-            "type": "object",
-            "properties": {},
-            "required": []
-        }
-    }
-}]
 
-functions = {
-    'quit': quit,
-}
-
-# Initialize a new chatbot
+# Initialize a new chatbot, including the tools and functions from the example_tools.py file.
 chatbot = Chatbot({
         "name": "Chatbot",
         "description": "A chatbot that can talk to you, and answer your questions.",
@@ -74,7 +66,7 @@ chatbot = Chatbot({
         "functions": functions
     })
 
-# Start chatting with the chatbot, and pass in your OpenAI API key.
+# Start the chatbot
 chatbot.start_chat()
 
 

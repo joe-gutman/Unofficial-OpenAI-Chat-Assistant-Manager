@@ -11,8 +11,14 @@ This is an unofficial library that I've put together to make it easier to intera
 - Connects to the OpenAI API using your API key
 - Manages assistants and chat threads
 - Sends and receives messages for assistant chat threads
+- Triggers custom tools and functions
 - Handles errors related to the API, chat, and assistant
 - Logs info about the chat process to the console and a file named `chat.log`
+
+### TODO
+
+- File uploading and handling
+- Image Generation
 
 ## Usage
 
